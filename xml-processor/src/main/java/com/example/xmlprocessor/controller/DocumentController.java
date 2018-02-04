@@ -58,6 +58,8 @@ public class DocumentController {
             return new ResponseEntity(new CustomErrorType("Unable to save objects to database." +
                     ""), HttpStatus.CONFLICT);
         }
+        report.setError("No error while processing XML document.");
+        documentReportRepository.save(report);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/api/doctor/{id}").buildAndExpand(doctor.getId()).toUri());
