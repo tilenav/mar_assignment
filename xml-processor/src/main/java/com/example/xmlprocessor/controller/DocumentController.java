@@ -1,9 +1,7 @@
 package com.example.xmlprocessor.controller;
 
-import com.example.xmlprocessor.model.Disease;
 import com.example.xmlprocessor.model.Doctor;
 import com.example.xmlprocessor.model.DocumentReport;
-import com.example.xmlprocessor.model.Patient;
 import com.example.xmlprocessor.repository.*;
 import com.example.xmlprocessor.util.CustomErrorType;
 import org.slf4j.Logger;
@@ -18,7 +16,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -53,6 +50,7 @@ public class DocumentController {
         } catch (Exception e) {
             // We should catch specific exceptions, but it will be like this for now.
             logger.error("Unable to save objects to DB. Exception cause: {}", e.getCause().toString());
+            logger.error("Stacktrace: {}", e);
             report.setError(String.format("Unable to save objects to DB. Exception cause: %s",
                     e.getCause().toString()));
             documentReportRepository.save(report);
