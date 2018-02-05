@@ -16,6 +16,12 @@ cd xml-processor
 mvn spring-boot:run
 ```
 
+# To list all APIs
+Go to
+```bash
+http://localhost:8181/swagger-ui.html
+```
+
 ## To use
 If the application is running send a POST request to:
 ```bash
