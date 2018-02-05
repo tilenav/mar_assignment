@@ -1,13 +1,12 @@
 package com.example.xmlprocessor.controller;
 
+import com.example.xmlprocessor.exception.NoResultsException;
 import com.example.xmlprocessor.model.Doctor;
 import com.example.xmlprocessor.repository.DoctorRepository;
-import com.example.xmlprocessor.util.CustomErrorType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,24 +21,26 @@ public class DoctorController {
     DoctorRepository doctorRepository;
 
     @GetMapping("/")
-    public ResponseEntity<List<Doctor>> listAllDoctors() {
+    @ResponseStatus(HttpStatus.OK)
+    public List<Doctor> listAllDoctors() throws NoResultsException {
+        logger.info("Fetching all doctors.");
         List<Doctor> doctors = doctorRepository.findAll();
         if (doctors.isEmpty()) {
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
-            // Could use HttpStatus.NOT_FOUND
+            logger.info("No doctors found.");
+            throw new NoResultsException("No doctors found.");
         }
-        return new ResponseEntity<List<Doctor>>(doctors, HttpStatus.OK);
+        return doctors;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getUser(@PathVariable("id") long id) {
+    @ResponseStatus(HttpStatus.OK)
+    public Doctor getDoctor(@PathVariable("id") long id) throws NoResultsException {
         logger.info("Fetching Doctor with id {}", id);
         Doctor doctor = doctorRepository.findOne(id);
         if (doctor == null) {
-            logger.error("Doctor with id {} not found.", id);
-            return new ResponseEntity(new CustomErrorType("Doctor with id " + id
-                    + " not found"), HttpStatus.NOT_FOUND);
+            logger.info("Doctor with id {} not found.", id);
+            throw new NoResultsException("Doctor with id " + id + " not found");
         }
-        return new ResponseEntity<Doctor>(doctor, HttpStatus.OK);
+        return doctor;
     }
 }
