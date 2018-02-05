@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 @EnableJpaAuditing
-@RequestMapping("/api/v1")
 public class XmlProcessorApplication {
 	private static final Logger logger = LoggerFactory.getLogger(XmlProcessorApplication.class);
 

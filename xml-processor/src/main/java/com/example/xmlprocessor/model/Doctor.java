@@ -1,6 +1,9 @@
 package com.example.xmlprocessor.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
@@ -22,12 +25,14 @@ public class Doctor {
   @ManyToOne
   @Cascade(CascadeType.ALL)
   @JoinColumn(name = "department_name")
+  @JsonIgnoreProperties("doctors")
   private Department department;
 
   @ManyToMany
   @Cascade({CascadeType.SAVE_UPDATE, CascadeType.MERGE})
   @JoinTable(name = "doctor_has_patient", joinColumns = @JoinColumn(name = "doctor_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"))
+  @JsonIgnoreProperties("doctors")
   private Set<Patient> patients;
 
   public Long getId() {
