@@ -19,6 +19,6 @@ mvn spring-boot:run
 ## To use
 If the application is running send a POST request to:
 ```bash
-http://localhost:8181/api/v1/
+http://localhost:8181/document
 ```
 With ./resources/input.xml file as input.
