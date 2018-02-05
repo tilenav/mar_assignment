@@ -1,7 +1,10 @@
 package com.example.xmlprocessor.model;
 
-import org.hibernate.annotations.Cascade;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Cascade;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -17,6 +20,7 @@ public class Disease {
 
   @ManyToMany(mappedBy = "diseases")
   @Cascade({CascadeType.SAVE_UPDATE, CascadeType.MERGE})
+  @JsonIgnoreProperties("diseases")
   private Set<Patient> patients;
 
   public Disease() {

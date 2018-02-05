@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/doctor")
 public class DoctorController {
 
-    private static final Logger logger = LoggerFactory.getLogger(DocumentController.class);
+    private static final Logger logger = LoggerFactory.getLogger(DoctorController.class);
 
     @Autowired
     DoctorRepository doctorRepository;
@@ -36,7 +36,7 @@ public class DoctorController {
         logger.info("Fetching Doctor with id {}", id);
         Doctor doctor = doctorRepository.findOne(id);
         if (doctor == null) {
-            logger.error("User with id {} not found.", id);
+            logger.error("Doctor with id {} not found.", id);
             return new ResponseEntity(new CustomErrorType("Doctor with id " + id
                     + " not found"), HttpStatus.NOT_FOUND);
         }
