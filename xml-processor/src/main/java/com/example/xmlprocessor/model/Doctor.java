@@ -22,7 +22,6 @@ public class Doctor {
   @ManyToOne
   @Cascade(CascadeType.ALL)
   @JoinColumn(name = "department_name")
-  //@JacksonXmlProperty(localName = "department_name", isAttribute = true)
   private Department department;
 
   @ManyToMany
