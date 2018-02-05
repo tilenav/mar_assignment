@@ -1,5 +1,6 @@
 package com.example.xmlprocessor.model;
 
+
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;

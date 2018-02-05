@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/document")
 public class DocumentController {
 
     private static final Logger logger = LoggerFactory.getLogger(DocumentController.class);
@@ -64,28 +63,6 @@ public class DocumentController {
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/api/doctor/{id}").buildAndExpand(doctor.getId()).toUri());
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
-    }
-
-    @GetMapping("/doctor/")
-    public ResponseEntity<List<Doctor>> listAllDoctors() {
-        List<Doctor> doctors = doctorRepository.findAll();
-        if (doctors.isEmpty()) {
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
-            // Could use HttpStatus.NOT_FOUND
-        }
-        return new ResponseEntity<List<Doctor>>(doctors, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/doctor/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getUser(@PathVariable("id") long id) {
-        logger.info("Fetching Doctor with id {}", id);
-        Doctor doctor = doctorRepository.findOne(id);
-        if (doctor == null) {
-            logger.error("User with id {} not found.", id);
-            return new ResponseEntity(new CustomErrorType("Doctor with id " + id
-                    + " not found"), HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<Doctor>(doctor, HttpStatus.OK);
     }
 
 }
