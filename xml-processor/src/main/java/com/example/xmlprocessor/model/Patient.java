@@ -11,7 +11,6 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.Set;
 
 @Entity

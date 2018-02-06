@@ -1,11 +1,10 @@
 package com.example.xmlprocessor.controller;
 
 import com.example.xmlprocessor.exception.DocumentProcessException;
-import com.example.xmlprocessor.exception.EntityExistsException;
-import com.example.xmlprocessor.exception.WhileSavingException;
 import com.example.xmlprocessor.model.Doctor;
 import com.example.xmlprocessor.model.DocumentReport;
-import com.example.xmlprocessor.repository.*;
+import com.example.xmlprocessor.repository.DoctorRepository;
+import com.example.xmlprocessor.repository.DocumentReportRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.swing.text.Document;
 import javax.validation.Valid;
 
 @RestController
