@@ -18,17 +18,14 @@ public class DoctorRepositoryTest {
 
     @Test
     public void testCreateDoctor() {
-        // Test, ki gre na bazo
-        Department department = new Department("marand");
+        // Test, ki gre na bazo / unit test (?)
         Doctor doctor = new Doctor();
 
-        doctor.setDepartment(department);
-        doctor.setId(200L);
         // Save to DB
-        doctorRepository.save(doctor);
+        doctor = doctorRepository.save(doctor);
 
         // Retrieve from DB
-        Doctor retrievedDoc = doctorRepository.findOne(200L);
+        Doctor retrievedDoc = doctorRepository.findOne(doctor.getId());
 
         Assert.assertNotNull(retrievedDoc);
     }
