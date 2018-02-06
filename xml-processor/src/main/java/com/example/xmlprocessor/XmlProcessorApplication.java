@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -16,4 +15,5 @@ public class XmlProcessorApplication {
 		SpringApplication.run(XmlProcessorApplication.class, args);
 		logger.debug("--Application started--");
 	}
+
 }

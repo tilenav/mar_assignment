@@ -12,5 +12,4 @@ public class XmlProcessorApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }

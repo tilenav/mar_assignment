@@ -43,4 +43,16 @@ public class DoctorController {
         }
         return doctor;
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteDoctor(@PathVariable("id") long id) throws NoResultsException {
+        logger.info("Fetching Doctor with id {}", id);
+        Doctor doctor = doctorRepository.findOne(id);
+        if (doctor == null) {
+            logger.info("Doctor with id {} not found.", id);
+            throw new NoResultsException("Doctor with id " + id + " not found");
+        }
+        doctorRepository.delete(id);
+    }
 }

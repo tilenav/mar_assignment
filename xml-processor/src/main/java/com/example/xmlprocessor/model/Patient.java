@@ -2,6 +2,7 @@ package com.example.xmlprocessor.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -10,6 +11,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.Set;
 
 @Entity
@@ -34,7 +36,8 @@ public class Patient {
   @Cascade(CascadeType.SAVE_UPDATE)
   @JoinTable(name = "patient_has_disease", joinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "disease_name", referencedColumnName = "name"))
-  @JacksonXmlProperty(localName = "diseases")
+  @JacksonXmlProperty(localName = "disease")
+  @JacksonXmlElementWrapper(localName = "diseases")
   @JsonIgnoreProperties("patients")
   private Set<Disease> diseases;
 
@@ -42,6 +45,27 @@ public class Patient {
   @Cascade({CascadeType.SAVE_UPDATE, CascadeType.MERGE})
   @JsonIgnoreProperties("patients")
   private Set<Doctor> doctors;
+
+  public Patient() {
+  }
+
+  public Patient(String firstName, String lastName, Set<Disease> diseases) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.diseases = diseases;
+  }
+
+  public Patient(String firstName, String lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  public Patient(Long id, String firstName, String lastName, Set<Disease> diseases) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.diseases = diseases;
+  }
 
   public Long getId() {
     return id;

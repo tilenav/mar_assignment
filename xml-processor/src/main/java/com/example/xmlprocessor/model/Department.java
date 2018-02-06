@@ -2,6 +2,7 @@ package com.example.xmlprocessor.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -21,6 +22,8 @@ public class Department {
 
   @OneToMany(mappedBy = "department")
   @Cascade(CascadeType.ALL)
+  @JacksonXmlProperty(localName = "doctor")
+  @JacksonXmlElementWrapper(localName = "doctors")
   @JsonIgnoreProperties("department")
   private Set<Doctor> doctors;
 
