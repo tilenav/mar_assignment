@@ -1,7 +1,6 @@
 package com.example.xmlprocessor.model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Cascade;
@@ -19,7 +18,7 @@ public class Disease {
   private String name;
 
   @ManyToMany(mappedBy = "diseases")
-  @Cascade({CascadeType.SAVE_UPDATE, CascadeType.MERGE})
+  @Cascade(CascadeType.SAVE_UPDATE)
   @JsonIgnoreProperties("diseases")
   private Set<Patient> patients;
 

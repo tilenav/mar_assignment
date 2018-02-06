@@ -1,8 +1,7 @@
 package com.example.xmlprocessor.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -32,7 +31,7 @@ public class Patient {
   private String lastName;
 
   @ManyToMany
-  @Cascade({CascadeType.SAVE_UPDATE, CascadeType.MERGE})
+  @Cascade(CascadeType.SAVE_UPDATE)
   @JoinTable(name = "patient_has_disease", joinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "disease_name", referencedColumnName = "name"))
   @JacksonXmlProperty(localName = "diseases")
