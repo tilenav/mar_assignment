@@ -58,7 +58,7 @@ public class DocumentControllerTest {
     private WebApplicationContext webApplicationContext;
 
     @Before
-    public void setup() throws Exception {
+    public void setup() {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
 
         // We want a clean start.

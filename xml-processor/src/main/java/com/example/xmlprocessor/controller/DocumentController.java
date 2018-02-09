@@ -33,12 +33,10 @@ public class DocumentController {
             throws DocumentProcessException {
         logger.info("Creating doctor : {}", doctor);
 
-        if (doctor.getId() != null) {
-            if (doctorRepository.exists(doctor.getId())) {
-                logger.info("Unable to process document. A doctor with id {} already exists.", doctor.getId());
-                throw new DocumentProcessException("Unable to create. A doctor with id " +
-                        doctor.getId() + " already exist.", doctor);
-            }
+        if (doctor.getId() != null && doctorRepository.exists(doctor.getId())) {
+            logger.info("Unable to process document. A doctor with id {} already exists.", doctor.getId());
+            throw new DocumentProcessException("Unable to create. A doctor with id " +
+                    doctor.getId() + " already exist.", doctor);
         }
 
         try {

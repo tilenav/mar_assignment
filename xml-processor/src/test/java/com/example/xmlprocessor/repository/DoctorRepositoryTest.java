@@ -1,6 +1,5 @@
 package com.example.xmlprocessor.repository;
 
-import com.example.xmlprocessor.model.Department;
 import com.example.xmlprocessor.model.Doctor;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +16,7 @@ public class DoctorRepositoryTest {
     private DoctorRepository doctorRepository;
 
     @Test
-    public void testCreateDoctor() {
+    public void testSave() {
         // Test, ki gre na bazo / unit test (?)
         Doctor doctor = new Doctor();
 
