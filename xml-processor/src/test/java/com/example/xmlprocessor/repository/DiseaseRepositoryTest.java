@@ -59,18 +59,18 @@ public class DiseaseRepositoryTest {
     }
 
     @Test
-    public void testFindByName() {
+    public void testFindOne() {
         d = new Disease("hiv");
         diseaseRepository.save(d);
 
-        Assert.assertNotNull(diseaseRepository.findByName("hiv"));
-        Assert.assertEquals(d.getName(), diseaseRepository.findByName("hiv").getName());
-        Assert.assertNull(diseaseRepository.findByName("test"));
+        Assert.assertNotNull(diseaseRepository.findOne("hiv"));
+        Assert.assertEquals(d.getName(), diseaseRepository.findOne("hiv").getName());
+        Assert.assertNull(diseaseRepository.findOne("test"));
     }
 
     @Test
     public void testUpdate() {
-        Disease nice_to_people = diseaseRepository.findByName("nice_to_people");
+        Disease nice_to_people = diseaseRepository.findOne("nice_to_people");
         nice_to_people.setName("Nice to people");
 
         Disease updated = diseaseRepository.saveAndFlush(nice_to_people);

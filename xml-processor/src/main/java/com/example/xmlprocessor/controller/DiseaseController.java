@@ -36,7 +36,8 @@ public class DiseaseController {
     @ResponseStatus(HttpStatus.OK)
     public Disease getDisease(@PathVariable("name") String name) throws NoResultsException {
         logger.info("Fetching Disease with name {}", name);
-        Disease disease = diseaseRepository.findByName(name);
+        Disease disease = diseaseRepository.findOne(name);
+        diseaseRepository.findOne(name);
         if (disease == null) {
             logger.info("Disease with name {} not found.", name);
             throw new NoResultsException("Disease with name " + name + " not found");

@@ -37,7 +37,7 @@ public class DepartmentController {
     @ResponseStatus(HttpStatus.OK)
     public Department getDepartment(@PathVariable("name") String name) throws NoResultsException {
         logger.info("Fetching Department with name {}", name);
-        Department department = departmentRepository.findByName(name);
+        Department department = departmentRepository.findOne(name);
         if (department == null) {
             logger.info("Department with name {} not found.", name);
             throw new NoResultsException("Department with name " + name + " not found");
